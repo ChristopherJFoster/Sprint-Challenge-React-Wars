@@ -7,7 +7,9 @@ function Char(props) {
         <p className="list-number">{props.listNumber}.&nbsp;</p>
         <p className="char-name">{props.char.name}</p>
       </div>
-      <button onClick={props.moreInfo}>More Info</button>
+      <button created={props.char.created} onClick={props.moreInfo}>
+        More Info
+      </button>
     </div>
   );
 }

@@ -5,10 +5,13 @@ const CharCard = props => {
     <div className="char-card">
       <div className="card-background" />
       <div className="card-foreground">
-        <p>Name: {props.moreCharInfo.name}</p>
+        <h2>{props.moreCharInfo.name}</h2>
         <p>Birth Year: {props.moreCharInfo.birth_year}</p>
         <p>Gender: {props.moreCharInfo.gender}</p>
+        <p>Eye Color: {props.moreCharInfo.eye_color}</p>
+        <p>Hair Color: {props.moreCharInfo.hair_color}</p>
         <p>Mass: {props.moreCharInfo.mass}</p>
+        <p>Height: {props.moreCharInfo.height}</p>
       </div>
     </div>
   );
