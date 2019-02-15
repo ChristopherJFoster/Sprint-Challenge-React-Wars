@@ -8,7 +8,7 @@ class App extends Component {
     super();
     this.state = {
       starwarsChars: [],
-      moreCharInfo: {}
+      moreCharInfo: {} // Get additional information ready to display. Not ideal, since this character's info in stored in state twice.
     };
   }
 
@@ -35,6 +35,7 @@ class App extends Component {
   moreInfo = e => {
     e.preventDefault();
     const index = this.state.starwarsChars.findIndex(
+      // This e.target.getAttribute("<attribute name>") was key to getting moreInfo to work properly. There seem to be some gotchas regarding which attributes can be accessed by e.target.
       char => char.created === e.target.getAttribute("created")
     );
     this.setState({ moreCharInfo: this.state.starwarsChars[index] });

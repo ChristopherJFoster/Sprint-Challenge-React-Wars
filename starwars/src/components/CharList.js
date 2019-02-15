@@ -4,6 +4,7 @@ import Char from "./Char";
 const CharList = props => {
   return (
     <div className="char-list">
+      {/* Allows for a transparent background with an opaque foreground: */}
       <div className="list-background" />
       <div className="list-foreground">
         {props.starwarsChars.map((char, index) => (
