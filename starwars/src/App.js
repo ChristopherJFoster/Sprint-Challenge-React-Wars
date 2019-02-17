@@ -35,11 +35,12 @@ class App extends Component {
   // I passed an arrow function into the event listener for the "More Info" button in the Char.js component. This allowed me to pass the 'created' property of the appropriate character, 'created' being a unique id. Here 'created' is passed into moreInfo as an argument, and I can find the index of the appropriate character by comparing the 'created' property of each item (char) in the starwarsChar array to the passed-in argument 'created.
   moreInfo = (created, e) => {
     e.preventDefault();
-    const index = this.state.starwarsChars.findIndex(
+    // Changed this from indexOf() to filter, and then, since the filter will only ever return an array with a single item, I take the 'created' attribute of the the 0th item of the returned array. I think storing the chosen character's 'created' attribute in state (the attribute I'm using as an ID) might be the smallest amount of data I can store in state to achieve my desired result.
+    const moreCharInfo = this.state.starwarsChars.filter(
       // This e.target.getAttribute("<attribute name>") was key to getting moreInfo to work properly. There seem to be some gotchas regarding which attributes can be accessed by e.target. See update, next comment above.
       char => char.created === created
-    );
-    this.setState({ moreCharInfo: this.state.starwarsChars[index] });
+    )[0].created;
+    this.setState({ moreCharInfo: moreCharInfo });
   };
 
   render() {
@@ -51,7 +52,11 @@ class App extends Component {
             starwarsChars={this.state.starwarsChars}
             moreInfo={this.moreInfo}
           />
-          <CharCard moreCharInfo={this.state.moreCharInfo} />
+          <CharCard
+            moreCharInfo={this.state.starwarsChars.filter(
+              char => char.created === this.state.moreCharInfo
+            )}
+          />
         </div>
       </div>
     );
